@@ -9,10 +9,28 @@ problem_path = "/home/mp/Desktop/starwars_planning/AI_A3/pythonProject/Planning/
 output_path = "/home/mp/Desktop/starwars_planning/AI_A3/pythonProject/Planning/output.txt"
 exec_path = "/home/mp/Documents/downward-main/fast-downward.py"
 
+
+def solve_problem(ship, droids):
+    pb = generate_problem(ship, droids)
+    problem = write_problem(pb, "../Planning/problem.pddl")
+    command = [
+        exec_path,
+        domain_path,
+        problem_path,
+        "--search", "astar(lmcut())"
+    ]
+
+    with open(output_path, "w") as output_file:
+        subprocess.run(command, stdout=output_file)
+
+    str_output, total_time = parse_output()
+
+    return problem, str_output, total_time
+
 def solve_random(nr):
     pb = generate_random_problem(nr)
 
-    write_problem(pb, "../Planning/problem.pddl")
+    problem = write_problem(pb, "../Planning/problem.pddl")
 
     command = [
         exec_path,
@@ -24,7 +42,9 @@ def solve_random(nr):
     with open(output_path, "w") as output_file:
         subprocess.run(command, stdout=output_file)
 
-    return parse_output()
+    str_output, total_time = parse_output()
+
+    return problem, str_output, total_time
 
 def parse_output():
     # Read the content of the sas_plan file
@@ -103,11 +123,9 @@ def generate_graph():
     plt.legend(title="Algorithm")
     plt.grid(True)
 
-    graph_path = "../Planning/performance_graph.png"
+    graph_path = "../Resources/performance_graph.png"
     plt.savefig(graph_path)
+    plt.show()
 
     return graph_path
 
-
-
-generate_graph()

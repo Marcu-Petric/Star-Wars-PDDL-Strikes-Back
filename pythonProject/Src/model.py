@@ -86,4 +86,6 @@ def write_problem(problem, path):
     with open(path, "w") as problem_file:
         problem_file.write(problem)
 
+    return problem
+
 generate_random_problem(8)
