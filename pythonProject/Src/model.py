@@ -1,6 +1,6 @@
 import random
 from os import write
-from Src.config import all_planets, all_droids
+from config import all_planets, all_droids
 
 
 def generate_random_problem(nr_of_droids):
@@ -86,10 +86,4 @@ def write_problem(problem, path):
     with open(path, "w") as problem_file:
         problem_file.write(problem)
 
-# Example usage:
-droids_i = [
-    ("r2d2", "tatooine", "dagobah"),
-    ("c3po", "hoth", "dagobah")
-]
-pb = generate_random_problem(12)
-write_problem(pb, "../Planning/problem.pddl")
+generate_random_problem(8)
