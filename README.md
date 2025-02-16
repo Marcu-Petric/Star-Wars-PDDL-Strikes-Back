@@ -1,4 +1,4 @@
-# A3: Planning
+# Star Wars PDDL Strikes Back
 
 ## Introduction
 The project is a planning application based on PDDL (Planning Domain Definition Language), which generates random planning problems and uses search algorithms to find solutions. The user can create and solve planning problems involving droids, where each droid has a location and a destination point (home). Algorithms such as A* and Greedy are used to find efficient solutions, and the results are displayed in the form of graphs illustrating the performance of the algorithms depending on different problem sizes (number of droids).
